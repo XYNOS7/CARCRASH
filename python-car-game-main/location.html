@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation Example</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJkhw9HOv7DCSDF4DyPBUzGKxZR7Ra6ho"></script>
+</head>
+<body>
+    <h1>My Location</h1>
+    <div id="map" style="height: 400px; width: 100%;"></div>
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: latitude, lng: longitude},
+                    zoom: 15
+                });
+
+                var marker = new google.maps.Marker({
+                    position: {lat: latitude, lng: longitude},
+                    map: map,
+                    title: 'You are here!'
+                });
+            });
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    </script>
+</body>
+</html>
